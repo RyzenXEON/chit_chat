@@ -2,7 +2,6 @@ import 'package:chit_chat/services/auth/auth_service.dart';
 import 'package:chit_chat/components/my_button.dart';
 import 'package:chit_chat/components/my_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RegisterPage extends StatelessWidget {
 
@@ -20,12 +19,12 @@ class RegisterPage extends StatelessWidget {
   //register
   void register(BuildContext context){
     //call auth service
-    final _auth =AuthService();
+    final auth =AuthService();
 
     //check if password == confirm password
     if(_pwController.text==_confirmpwController.text){
       try{
-        _auth.signUpWithEmailPassword(
+        auth.signUpWithEmailPassword(
         _emailController.text,
         _confirmpwController.text
       );
@@ -42,7 +41,7 @@ class RegisterPage extends StatelessWidget {
     else{
       showDialog(
         context: context,
-         builder: (context)=> AlertDialog(
+         builder: (context)=> const AlertDialog(
           title: Text("Passwords don't match!"),
          ),
         );
