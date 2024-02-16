@@ -27,6 +27,7 @@ class _ChatPageState extends State<ChatPage> {
   //auth and chat service
   final ChatService _chatService=ChatService();
   final AuthService _authService=AuthService();
+  bool _isSending = false;
 
   //scroll to latest text
   FocusNode myFocusNode = FocusNode();
@@ -74,9 +75,11 @@ class _ChatPageState extends State<ChatPage> {
   //send msg
   void sendMessage() async{
     //send only if text is there
-    if(_messageController.text.isNotEmpty){
+    if(_messageController.text.isNotEmpty && !_isSending){
+      _isSending =true;
       await _chatService.sendMessage(widget.receiverID, _messageController.text);
       _messageController.clear();
+      _isSending = false;
     }
     scrollDown();
   }
@@ -179,7 +182,7 @@ class _ChatPageState extends State<ChatPage> {
             ),
             margin: const EdgeInsets.only(right: 25),
             child: IconButton(
-              onPressed: sendMessage,
+              onPressed: _isSending ? null : sendMessage,
               icon: const Icon(Icons.arrow_upward, color: Colors.white,),
             ),
           )
