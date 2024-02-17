@@ -1,7 +1,6 @@
 import 'package:chit_chat/components/my_drawer.dart';
 import 'package:chit_chat/components/user_tile.dart';
 import 'package:chit_chat/pages/chat_page.dart';
-import 'package:chit_chat/services/auth/auth_service.dart';
 import 'package:chit_chat/services/chat/chat_service.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +10,6 @@ class HomePage extends StatelessWidget {
 
   //chat and auth service
   final ChatService _chatService=ChatService();
-  final AuthService _authService=AuthService();
 
   @override
   Widget build(BuildContext context) {
